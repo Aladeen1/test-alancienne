@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+	has_many :items
+
 	enum tva: [:normal_tva, :reduced_tva]
 	validates :stock_available, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 	validates :stock_ordered, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
@@ -16,7 +18,7 @@ class Product < ApplicationRecord
 		tva_rate = get_tva_rate(self.tva)
 
 		ttc_price = self.price_ht + (self.price_ht * tva_rate).round(2)
-		print '%.2f' % ttc_price
+		puts "TTC price is #{'%.2f' % ttc_price}"
 		return ttc_price
 	end
 
