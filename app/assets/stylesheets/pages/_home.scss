@@ -1,1 +1,21 @@
-// Specific CSS for your home-page
+.new_product {
+	display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 100px auto;
+
+    div {
+    	width: 100%;
+    	display: flex;
+    	justify-content: space-between;
+    	margin: 15px;
+    }
+
+    input[type=submit] {
+    	width: 100px;
+    	padding: 10px;
+    	border-radius: 10px;
+    	background-color: grey;
+    	color: white;
+    }
+}
