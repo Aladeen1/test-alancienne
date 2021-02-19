@@ -1,21 +1,22 @@
 
+export const catalog = () => {
 
 	const quantityInputs = document.querySelectorAll('#product_quantity');
 	const priceTarget = document.getElementById('total_price');
 	const quantityTarget = document.getElementById('total_quantity');
 
 	quantityInputs.forEach( (input) => {
-
 		input.addEventListener('input', event => {
-			let array = [];
 
+			let array = [];
 			quantityInputs.forEach( (field) => {
 				array.push(calculatePrice(field))
 			})
-
 			updateTotal(array, priceTarget, quantityTarget)
+
 		})
 	})
+}
 
 function updateTotal(array, priceTarget, quantityTarget) {
 	let totalPrice = 0;
@@ -29,7 +30,6 @@ function updateTotal(array, priceTarget, quantityTarget) {
 	priceTarget.innerHTML = `${totalPrice} €`
 	quantityTarget.innerHTML = `${totalQuantity}`
 }
-
 
 function calculatePrice(input) {
 	const element = input.parentElement.parentElement;

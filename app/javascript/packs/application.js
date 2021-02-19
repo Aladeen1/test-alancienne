@@ -19,9 +19,8 @@ require("channels")
 import "bootstrap";
 
 
-import "./catalog.js"
+import { catalog } from "./catalog.js"
 
 document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
+  catalog();
 });
