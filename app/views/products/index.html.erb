@@ -1,0 +1,22 @@
+
+<div class="catalogue-div">
+	<ul>
+		<li>Produit</li>
+		<li>Prix</li>
+		<li>Quantité</li>
+	</ul>
+
+	<% @products.each do |product| %>
+		<ul>
+			<li><%= product.name %></li>
+			<li><%= product.get_ttc_price %> €</li>
+			<li><input type="number" id="product_quantity" name="product_quantity" min="0" max=<%= product.get_available_stock %>></li>
+		</ul>
+	<% end %>
+
+	<ul>
+		<li>TOTAL</li>
+		<li id="total_price"></li>
+		<li id="total_quantity"></li>
+	</ul>
+</div>

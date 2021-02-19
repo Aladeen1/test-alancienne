@@ -19,3 +19,26 @@
     	color: white;
     }
 }
+
+.catalogue-div {
+    
+    width: 500px;
+    margin: 100px auto;
+
+
+    ul {
+        display: flex;
+        justify-content: space-between;
+
+        li {
+            list-style: none;
+            width: 120px;
+            text-align: center;
+        }
+    }
+
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button {  
+        opacity: 1;
+    }
+}

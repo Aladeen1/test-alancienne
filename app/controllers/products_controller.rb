@@ -10,6 +10,10 @@ class ProductsController < ApplicationController
 		redirect_to new_product_path
 	end
 
+	def index
+		@products = Product.all
+	end
+
 	private 
 
 	def product_params
