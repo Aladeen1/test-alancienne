@@ -7,13 +7,11 @@ export const catalog = () => {
 
 	quantityInputs.forEach( (input) => {
 		input.addEventListener('input', event => {
-
 			let array = [];
 			quantityInputs.forEach( (field) => {
 				array.push(calculatePrice(field))
 			})
 			updateTotal(array, priceTarget, quantityTarget)
-
 		})
 	})
 }

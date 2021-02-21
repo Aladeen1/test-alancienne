@@ -15,8 +15,12 @@
 	<% end %>
 
 	<ul>
-		<li>TOTAL</li>
-		<li id="total_price"></li>
-		<li id="total_quantity"></li>
+		<li><strong>TOTAL</strong></li>
+		<li id="total_price"><strong>0€</strong></li>
+		<li id="total_quantity"><strong>0</strong></li>
 	</ul>
 </div>
+
+<p>Cart ID equals: <%= @cart.id %></p>
+<p>Checked_out: <%= @cart.checked_out %></p>
+<p>Cookie ID equals: <%= cookies[:cart_id] %></p>
