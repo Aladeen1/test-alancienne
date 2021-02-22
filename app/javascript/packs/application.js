@@ -22,5 +22,7 @@ import "bootstrap";
 import { catalog } from "./catalog.js"
 
 document.addEventListener('turbolinks:load', () => {
-  catalog();
+	if  (document.getElementById('total_price')) {
+		catalog();
+	}
 });

@@ -20,11 +20,20 @@
     }
 }
 
+.products__link {
+    display: block;
+    text-align: center;
+}
+
+.product__index__wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 100px;
+}
+
 .catalogue__div {
     
     width: 500px;
-    margin: 100px auto;
-
 
     ul {
         display: flex;
@@ -41,6 +50,13 @@
     input[type=number]::-webkit-outer-spin-button {  
         opacity: 1;
     }
+}
+
+.checkout__div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0px 40px;
 }
 
 .closing__button {
