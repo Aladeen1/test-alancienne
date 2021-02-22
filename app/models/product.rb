@@ -22,8 +22,8 @@ class Product < ApplicationRecord
 		return ttc_price
 	end
 
-	def get_available_stock
-		available_stock = self.stock_available - self.stock_ordered
-		return available_stock
+	def get_immediate_stock
+		immediate_stock = self.stock_available - self.stock_ordered
+		return immediate_stock
 	end
 end

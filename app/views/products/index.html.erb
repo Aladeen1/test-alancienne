@@ -1,9 +1,9 @@
 
-<div class="catalogue-div">
+<div class="catalogue__div">
 	<ul>
-		<li>Produit</li>
-		<li>Prix</li>
-		<li>Quantité</li>
+		<li><strong>Produit</strong></li>
+		<li><strong>Prix</strong></li>
+		<li><strong>Quantité</strong></li>
 	</ul>
 
 	<% @products.each do |product| %>
@@ -19,11 +19,9 @@
 			<ul>
 				<li><%= product.name %></li>
 				<li><%= product.get_ttc_price %> €</li>
-				<li><%= f.input :quantity, :label => false, input_html: { min: '0', max: product.get_available_stock, value: value}
+				<li><%= f.input :quantity, :label => false, input_html: { min: '0', max: product.get_immediate_stock, value: value}
 				  	%>
 				</li>
-				<li><%= product.id %></li>
-				<li><%= @cart.id %></li>
 
 				<%= f.hidden_field :product_id, :value => product.id %>
 				<%= f.hidden_field :cart_id, :value => @cart.id %>
@@ -38,6 +36,13 @@
 		<li id="total_quantity"><strong>0</strong></li>
 	</ul>
 </div>
+
+
+	<%= form_for :random, url: carts_path do |f|%>
+		<%= f.hidden_field 'cart_id', :value => @cart.id %>
+		<%= f.submit 'Commander', :class => 'closing__button'%>
+	<% end %>
+
 
 <p>Cart ID equals: <%= @cart.id %></p>
 <p>Checked_out: <%= @cart.checked_out %></p>
