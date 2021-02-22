@@ -1,19 +1,32 @@
 
+
 export const catalog = () => {
 
-	const quantityInputs = document.querySelectorAll('#product_quantity');
+	const quantityInputs = document.querySelectorAll('#item_quantity');
 	const priceTarget = document.getElementById('total_price');
 	const quantityTarget = document.getElementById('total_quantity');
+	const form = document.querySelectorAll('#new_item');
+
+
+	updateTotalLogic(quantityInputs, priceTarget, quantityTarget)
 
 	quantityInputs.forEach( (input) => {
+
 		input.addEventListener('input', event => {
-			let array = [];
-			quantityInputs.forEach( (field) => {
-				array.push(calculatePrice(field))
-			})
-			updateTotal(array, priceTarget, quantityTarget)
+			
+			updateTotalLogic(quantityInputs, priceTarget, quantityTarget)
+			const formTarget = event.target.parentElement.parentElement.parentElement.parentElement
+			formTarget.submit();
 		})
 	})
+}
+
+function updateTotalLogic(quantityInputs, priceTarget, quantityTarget) {
+	let array = [];
+	quantityInputs.forEach( (field) => {
+		array.push(calculatePrice(field))
+	});
+	updateTotal(array, priceTarget, quantityTarget);
 }
 
 function updateTotal(array, priceTarget, quantityTarget) {
@@ -25,12 +38,12 @@ function updateTotal(array, priceTarget, quantityTarget) {
 		totalQuantity += element[1];
 	})
 
-	priceTarget.innerHTML = `${totalPrice} €`
-	quantityTarget.innerHTML = `${totalQuantity}`
+	priceTarget.innerHTML = `<strong>${totalPrice.toFixed(2)} €</strong>`;
+	quantityTarget.innerHTML = `<strong>${totalQuantity}</strong>`;
 }
 
 function calculatePrice(input) {
-	const element = input.parentElement.parentElement;
+	const element = input.parentElement.parentElement.parentElement;
 	const priceElement = element.querySelectorAll("li")[1].innerHTML;
 	const priceCalculation = Number(priceElement.split("€")[0]);
 	

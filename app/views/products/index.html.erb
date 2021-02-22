@@ -7,12 +7,30 @@
 	</ul>
 
 	<% @products.each do |product| %>
-		<ul>
-			<li><%= product.name %></li>
-			<li><%= product.get_ttc_price %> €</li>
-			<li><input type="number" id="product_quantity" name="product_quantity" min="0" max=<%= product.get_available_stock %>></li>
-		</ul>
+
+		<% if @cart.items.any?{|i| i.product_id == product.id} %>
+			<% item = @cart.items.find_index {|i| i.product_id == product.id} %>
+			<% value = @cart.items[item].quantity %>
+		<% else %>
+			<% value = 0 %>
+		<% end %>
+
+		<%= simple_form_for(@item, remote: true) do |f| %>
+			<ul>
+				<li><%= product.name %></li>
+				<li><%= product.get_ttc_price %> €</li>
+				<li><%= f.input :quantity, :label => false, input_html: { min: '0', max: product.get_available_stock, value: value}
+				  	%>
+				</li>
+				<li><%= product.id %></li>
+				<li><%= @cart.id %></li>
+
+				<%= f.hidden_field :product_id, :value => product.id %>
+				<%= f.hidden_field :cart_id, :value => @cart.id %>
+			</ul>
+		<% end %>
 	<% end %>
+
 
 	<ul>
 		<li><strong>TOTAL</strong></li>
@@ -24,3 +42,4 @@
 <p>Cart ID equals: <%= @cart.id %></p>
 <p>Checked_out: <%= @cart.checked_out %></p>
 <p>Cookie ID equals: <%= cookies[:cart_id] %></p>
+

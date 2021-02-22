@@ -11,6 +11,7 @@ class ProductsController < ApplicationController
 	end
 
 	def index
+		@item = Item.new
 		@products = Product.all
 
 		
@@ -21,6 +22,7 @@ class ProductsController < ApplicationController
 		else
 			@cart = Cart.find(cookies[:cart_id])
 		end
+
 	end
 
 	private 
