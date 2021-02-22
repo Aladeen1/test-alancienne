@@ -5,6 +5,10 @@ class ItemsController < ApplicationController
 
 		@cart = Cart.find(item_params[:cart_id])
 
+		# If the cart already has an item with a product_id corresponding to the one that is passed in the params,
+		# find and update that item
+		# If it doesn't, create that item
+		
 		if @cart.items.any?{|i| i.product_id == item_params[:product_id].to_i }
 			item_index = @cart.items.find_index {|i| i.product_id == item_params[:product_id].to_i }
 			@item = Item.find(@cart.items[item_index].id)

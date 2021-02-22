@@ -14,6 +14,8 @@ class ProductsController < ApplicationController
 		@item = Item.new
 		@products = Product.all
 
+		# If the cookie cart_id doesn't exist, we create a cart and save it. We assign its ID to the cookie cart_id
+		# If this cookie exist, we find the corresponding cart and assign it to the instance variable @cart
 		
 		if !cookies[:cart_id]
 			@cart = Cart.new
