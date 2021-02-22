@@ -1,0 +1,50 @@
+
+<div class="catalogue__div">
+	<ul>
+		<li><strong>Produit</strong></li>
+		<li><strong>Prix</strong></li>
+		<li><strong>Quantité</strong></li>
+	</ul>
+
+	<% @products.each do |product| %>
+
+		<% if @cart.items.any?{|i| i.product_id == product.id} %>
+			<% item = @cart.items.find_index {|i| i.product_id == product.id} %>
+			<% value = @cart.items[item].quantity %>
+		<% else %>
+			<% value = 0 %>
+		<% end %>
+
+		<%= simple_form_for(@item, remote: true) do |f| %>
+			<ul>
+				<li><%= product.name %></li>
+				<li><%= product.get_ttc_price %> €</li>
+				<li><%= f.input :quantity, :label => false, input_html: { min: '0', max: product.get_immediate_stock, value: value}
+				  	%>
+				</li>
+
+				<%= f.hidden_field :product_id, :value => product.id %>
+				<%= f.hidden_field :cart_id, :value => @cart.id %>
+			</ul>
+		<% end %>
+	<% end %>
+
+
+	<ul>
+		<li><strong>TOTAL</strong></li>
+		<li id="total_price"><strong>0€</strong></li>
+		<li id="total_quantity"><strong>0</strong></li>
+	</ul>
+</div>
+
+
+	<%= form_for :random, url: carts_path do |f|%>
+		<%= f.hidden_field 'cart_id', :value => @cart.id %>
+		<%= f.submit 'Commander', :class => 'closing__button'%>
+	<% end %>
+
+
+<p>Cart ID equals: <%= @cart.id %></p>
+<p>Checked_out: <%= @cart.checked_out %></p>
+<p>Cookie ID equals: <%= cookies[:cart_id] %></p>
+

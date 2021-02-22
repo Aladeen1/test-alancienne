@@ -1,0 +1,31 @@
+<%= simple_form_for(@product) do |f| %>
+
+	<div>
+		<%= f.label :name %>
+		<%= f.text_field :name, placeholder: 'Chou fleur' %>
+	</div>
+
+	<div>
+		<%= f.label :price_ht %>
+		<%= f.text_field :price_ht, placeholder: '7.50' %>
+	</div>
+
+	<div>
+		<%= f.label :tva %>
+		<%= f.select :tva, [["5.5%", "reduced_tva"], ["20%", "normal_tva"]] %>
+	</div>
+
+	<div>
+		<%= f.label :stock_available %>
+		<%= f.text_field :stock_available, placeholder: '43' %>
+	</div>
+	
+	<div>
+		<%= f.label :stock_ordered %>
+		<%= f.text_field :stock_ordered, placeholder: '6' %>
+	</div>
+
+	<%= f.button :submit, "Ajouter" %>
+<% end %>
+
+<%= link_to 'All products', products_path %>
