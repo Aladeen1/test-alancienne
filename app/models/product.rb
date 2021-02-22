@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-	has_many :items
+	has_many :items, dependent: :destroy
 
 	enum tva: [:normal_tva, :reduced_tva]
 	validates :stock_available, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
