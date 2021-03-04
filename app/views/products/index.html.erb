@@ -11,17 +11,14 @@
 
 			<!-- Setting a default value for the quantity of a certain product if the user's cart already contains an item with this product -->
 
-			<% if @cart.items.any?{|i| i.product_id == product.id} %>
-				<% item = @cart.items.find_index {|i| i.product_id == product.id} %>
-				<% value = @cart.items[item].quantity %>
-			<% else %>
-				<% value = 0 %>
-			<% end %>
+			<% item = @item_checks[product.name] %>
+			<% item ? value = item.quantity : value = 0 %>
 
+	
 			<!-- Create a form for each product, only the one user inputs to will be submitted -->
 			
 			<%= simple_form_for(@item, remote: true) do |f| %>
-				<ul>
+				<ul class="product__item">
 					<li><%= product.name %></li>
 					<li><%= product.get_ttc_price %> €</li>
 					<li><%= f.input :quantity, :label => false, input_html: { min: '0', max: product.get_immediate_stock, value: value}

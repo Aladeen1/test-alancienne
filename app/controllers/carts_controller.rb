@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-	def close
+	def close_cart
 		
 		# Receive params when user clicks on "commander"
 

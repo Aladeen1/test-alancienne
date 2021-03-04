@@ -18,7 +18,7 @@ class Product < ApplicationRecord
 		tva_rate = get_tva_rate(self.tva)
 
 		ttc_price = self.price_ht + (self.price_ht * tva_rate).round(2)
-		puts "TTC price is #{'%.2f' % ttc_price}"
+		# puts "TTC price is #{'%.2f' % ttc_price}"
 		return ttc_price
 	end
 

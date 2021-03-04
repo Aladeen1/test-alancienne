@@ -1,0 +1,14 @@
+courgette:
+  name: "Courgette"
+  price_ht: 4.00
+  tva: "reduced_tva"
+  stock_available: 56
+  stock_ordered: 18
+tomate:
+  name: "Tomate"
+  price_ht: 3.20
+  tva: "normal_tva"
+  stock_available: 112
+  stock_ordered: 20
+
+  
